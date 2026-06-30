@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "A 3D Romantic Anniversary Website",
   "scripts": {
-    "dev": "http-server . -c-1 -p 3000 -o",
-    "start": "http-server . -c-1 -p 3000",
+    "local": "http-server . -c-1 -p 3000 -o",
     "build": "echo \"No build required for static site\""
   },
   "devDependencies": {
