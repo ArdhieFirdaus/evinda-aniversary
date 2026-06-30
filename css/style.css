@@ -1,0 +1,317 @@
+:root {
+    /* Color Palette - Pink Galaxy */
+    --c-pink-light: #ffb3dc;
+    --c-pink-bright: #ff77c8;
+    --c-pink-primary: #ff4fa0;
+    --c-pink-dark: #ff0080;
+    --c-bg-dark: #050010;
+    --c-bg-deep: #12001f;
+    --c-white: #ffffff;
+    
+    /* Glassmorphism */
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.15);
+    --glass-shadow: 0 8px 32px 0 rgba(255, 0, 128, 0.2);
+    
+    /* Fonts */
+    --font-heading: 'Great Vibes', cursive;
+    --font-body: 'Outfit', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+body {
+    background-color: var(--c-bg-dark);
+    color: var(--c-white);
+    font-family: var(--font-body);
+    overflow: hidden; /* No scrollbars, we use 3D canvas and overlays */
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Typography */
+.title-romantic {
+    font-family: var(--font-heading);
+    color: var(--c-pink-light);
+    font-size: 4rem;
+    text-shadow: 0 0 20px var(--c-pink-primary), 0 0 40px var(--c-pink-dark);
+    margin-bottom: 1rem;
+    font-weight: normal;
+}
+
+.title-romantic.big {
+    font-size: 6rem;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    letter-spacing: 1px;
+}
+
+.subtitle-romantic {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    color: var(--c-pink-bright);
+    margin-top: 1rem;
+}
+
+/* Buttons */
+.btn {
+    padding: 12px 28px;
+    border-radius: 30px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    outline: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.btn.primary {
+    background: linear-gradient(45deg, var(--c-pink-dark), var(--c-pink-primary));
+    color: var(--c-white);
+    box-shadow: 0 0 15px rgba(255, 0, 128, 0.5);
+}
+
+.btn.primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(255, 0, 128, 0.8);
+}
+
+.btn.secondary {
+    background: transparent;
+    color: var(--c-white);
+    border: 2px solid var(--c-pink-primary);
+}
+
+.btn.secondary:hover {
+    background: rgba(255, 79, 160, 0.2);
+}
+
+.btn.glass {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    color: var(--c-white);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.btn.glass:hover {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 15px var(--c-pink-primary);
+    border-color: var(--c-pink-light);
+}
+
+/* Glass Panels */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    border-radius: 20px;
+}
+
+/* Screen Containers */
+.screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    pointer-events: none; /* Let clicks pass through to 3D canvas */
+}
+
+.screen.hidden, .overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+}
+
+.screen > * {
+    pointer-events: auto; /* Enable clicks for content inside screens */
+}
+
+/* Overlays (Popups) */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(5, 0, 16, 0.8);
+    backdrop-filter: blur(5px);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.btn-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: var(--c-white);
+    font-size: 2rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    z-index: 10;
+}
+
+.btn-close:hover {
+    color: var(--c-pink-primary);
+}
+
+/* Landing Specific */
+.landing-content {
+    text-align: center;
+    padding: 3rem;
+    background: radial-gradient(circle, rgba(18,0,31,0.8) 0%, rgba(5,0,16,0) 70%);
+}
+
+/* UI Navigation */
+.top-nav {
+    position: absolute;
+    top: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    pointer-events: auto;
+}
+
+.bottom-nav {
+    position: absolute;
+    bottom: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    pointer-events: auto;
+}
+
+.countdown {
+    text-align: center;
+    background: var(--glass-bg);
+    padding: 10px 30px;
+    border-radius: 30px;
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+}
+
+.countdown .label {
+    font-size: 0.8rem;
+    color: var(--c-pink-light);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.countdown .time-display {
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Music Toggle Button */
+#music-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    color: var(--c-white);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#music-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 15px var(--c-pink-primary);
+    border-color: var(--c-pink-light);
+}
+
+#music-toggle.playing {
+    color: var(--c-pink-light);
+    box-shadow: 0 0 15px var(--c-pink-primary);
+    border-color: var(--c-pink-primary);
+}
+
+/* Final Screen */
+.final-content {
+    text-align: center;
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+    .title-romantic {
+        font-size: 2.5rem;
+    }
+    .title-romantic.big {
+        font-size: 3.5rem;
+    }
+    .subtitle-romantic {
+        font-size: 2rem;
+    }
+    .subtitle {
+        font-size: 1rem;
+        padding: 0 15px;
+    }
+    
+    .countdown {
+        padding: 8px 15px;
+    }
+    .countdown .time-display {
+        font-size: 1rem;
+    }
+    
+    .bottom-nav {
+        flex-direction: column;
+        gap: 10px;
+        bottom: 20px;
+        align-items: center;
+    }
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        width: 80%;
+        max-width: 250px;
+    }
+    
+    #music-toggle {
+        width: 50px;
+        height: 50px;
+        bottom: 15px;
+        right: 15px;
+        font-size: 0.7rem;
+    }
+}

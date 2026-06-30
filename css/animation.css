@@ -1,0 +1,52 @@
+/* CSS Animations */
+
+@keyframes pulseGlow {
+    0% {
+        box-shadow: 0 0 15px rgba(255, 0, 128, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(255, 0, 128, 1);
+    }
+    100% {
+        box-shadow: 0 0 15px rgba(255, 0, 128, 0.5);
+    }
+}
+
+.pulse {
+    animation: pulseGlow 2s infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.floating {
+    animation: float 4s ease-in-out infinite;
+}
+
+/* Custom Scrollbar for Timeline */
+.timeline-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.timeline-container::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.timeline-container::-webkit-scrollbar-thumb {
+    background: var(--c-pink-primary);
+    border-radius: 10px;
+}
+
+.timeline-container::-webkit-scrollbar-thumb:hover {
+    background: var(--c-pink-bright);
+}

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 1st Anniversary ❤️</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/galaxy.css">
+    <link rel="stylesheet" href="css/animation.css">
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+    <!-- Three.js Import Map -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- Music Toggle Button -->
+    <button id="music-toggle" class="btn-glass-circle">
+        🎵 Off
+    </button>
+
+    <!-- Landing Screen -->
+    <div id="landing" class="screen">
+        <div class="landing-content">
+            <h1 class="title-romantic">Happy 1st Anniversary ❤️</h1>
+            <p class="subtitle">365 Days Together<br>Every moment with you is my favorite memory.</p>
+            <button id="btn-start" class="btn primary glow">Start Our Journey</button>
+        </div>
+    </div>
+
+    <!-- Main UI Overlay -->
+    <div id="main-ui" class="screen hidden">
+        <div class="top-nav">
+            <div class="countdown" id="countdown">
+                <span class="label">Together for</span>
+                <div class="time-display" id="time-display">000 Days 00 Hours 00 Mins 00 Secs</div>
+            </div>
+        </div>
+        
+        <div class="bottom-nav">
+            <button id="btn-memories" class="btn glass">Our Memories</button>
+            <button id="btn-letter" class="btn glass">Open Letter</button>
+            <button id="btn-final" class="btn primary pulse">Final Surprise</button>
+        </div>
+    </div>
+
+    <!-- Photo Popup -->
+    <div id="photo-popup" class="overlay hidden">
+        <div class="popup-content glass-panel">
+            <button class="btn-close">&times;</button>
+            <div class="popup-image-container">
+                <img id="popup-img" src="" alt="Memory">
+            </div>
+            <div class="popup-details">
+                <h3 id="popup-title">Our Memory</h3>
+                <p id="popup-date" class="date">Date</p>
+                <p id="popup-desc" class="desc">Description goes here...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Timeline / Memories Section -->
+    <div id="timeline-section" class="overlay hidden">
+        <div class="timeline-container glass-panel">
+            <button class="btn-close">&times;</button>
+            <h2>Our Beautiful Journey</h2>
+            <div class="timeline" id="timeline-list">
+                <!-- Timeline items injected by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Love Letter Section -->
+    <div id="letter-section" class="overlay hidden">
+        <div class="letter-container">
+            <button class="btn-close">&times;</button>
+            <div class="envelope" id="envelope">
+                <div class="flap"></div>
+                <div class="paper">
+                    <h2 class="title-romantic">My Dearest...</h2>
+                    <div class="letter-content" id="letter-text">
+                        <!-- Letter text injected by JS -->
+                    </div>
+                    <p class="signature">Forever Yours, ❤️</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Final Surprise Screen -->
+    <div id="final-screen" class="screen hidden">
+        <div class="final-content">
+            <h1 class="title-romantic big">Happy First Anniversary</h1>
+            <h2 class="subtitle-romantic">I Love You More Everyday ❤️</h2>
+        </div>
+    </div>
+
+    <!-- Three.js Canvas Container -->
+    <div id="canvas-container"></div>
+    <!-- CSS2D Renderer Container (For HTML Cards in 3D Space) -->
+    <div id="css-container"></div>
+
+    <!-- Audio Element -->
+    <audio id="bg-music" loop>
+        <source src="music/song.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Main Script -->
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>

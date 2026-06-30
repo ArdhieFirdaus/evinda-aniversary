@@ -1,0 +1,12 @@
+{
+  "name": "our-first-anniversary",
+  "version": "1.0.0",
+  "description": "A 3D Romantic Anniversary Website",
+  "scripts": {
+    "dev": "http-server . -c-1 -p 3000 -o",
+    "start": "http-server . -c-1 -p 3000"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
