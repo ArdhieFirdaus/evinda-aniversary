@@ -4,7 +4,8 @@
   "description": "A 3D Romantic Anniversary Website",
   "scripts": {
     "dev": "http-server . -c-1 -p 3000 -o",
-    "start": "http-server . -c-1 -p 3000"
+    "start": "http-server . -c-1 -p 3000",
+    "build": "echo \"No build required for static site\""
   },
   "devDependencies": {
     "http-server": "^14.1.1"
